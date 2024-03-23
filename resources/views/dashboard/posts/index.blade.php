@@ -1,9 +1,16 @@
 @extends('dashboard.layouts.main')
 
 @section('container-content')
+
+
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
   <h1 class="h2">My Posts</h1>
 </div>
+@if (session()->has('success'))
+  <div class="alert alert-success col-lg-8" role="alert">
+    {{ session('success') }}
+  </div>    
+@endif
 
 <div class="table-responsive small col-lg-8">
   <a href="/dashboard/posts/create" class="btn btn-primary mb-3">Create new post</a>
@@ -24,8 +31,12 @@
           <td>{{ $post->category->name }}</td>
           <td>
             <a href="/dashboard/posts/{{ $post->slug }}"><i class="bi bi-eye"></i></a>
-            <a href=""><i class="bi bi-pencil"></i></a>
-            <a href=""><i class="bi bi-trash"></i></a>
+            <a href="/dashboard/posts/{{ $post->slug }}/edit"><i class="bi bi-pencil"></i></a>
+            <form action="/dashboard/posts/{{ $post->slug }}" method="POST" class="d-inline ">
+              @method('delete')
+              @csrf
+              <button class="border-0" onclick="return confirm('are you sure?')" ><i class="bi bi-trash"></i></button>
+            </form>
           </td>
         </tr>
       @endforeach
