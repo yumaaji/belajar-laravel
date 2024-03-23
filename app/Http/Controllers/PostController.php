@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
 
+
 class PostController extends Controller
 {   
     public function index(){
