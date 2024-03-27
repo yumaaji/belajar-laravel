@@ -18,7 +18,7 @@
     <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
   </div>
 
-  <form action="/logout" method="POST" class="p-2">
+  <form action="/logout" method="POST" class="px-4">
     @csrf
     <button type="submit" class="dropdown-item text-white">Logout</button>
   </form>

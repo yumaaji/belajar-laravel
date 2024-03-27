@@ -18,5 +18,20 @@
         </a>
       </li>
     </ul>
+
+    @can('admin')      
+      <h6 class="sidebar-heading d-flex justify-content-conter align-items-center px-3 mt-4 mb-1 text-muted">
+        <span>Adminisrator</span>
+      </h6>
+      <ul class="nav flex-column">
+        <li class="nav-item d-flex align-items-center">
+          <a class="nav-link d-flex align-items-center justify-content-center gap-2" href="/dashboard/categories">
+            <div class="div">
+              <i class="bi bi-grid-3x3-gap-fill"></i> <span>Categories</span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    @endcan
   </div>
 </div>
