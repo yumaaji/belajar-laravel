@@ -25,7 +25,13 @@
 
     @if ($posts->count())
     <div class="card mb-3">
-        <img src="https://source.unsplash.com/1200x400/?{{ $posts[0]->category->name }}" class="card-img-top" alt="...">
+        @if ($posts[0]->image)
+            <div class="div" style="max-height: 350px; overflow: hidden;">
+                <img src="{{ asset('storage/' . $posts[0]->image) }}" class="card-img-top mt-4" alt="...">
+            </div>
+        @else
+            <img src="https://source.unsplash.com/1200x400/?{{ $posts[0]->category->name }}" class="card-img-top mt-4" alt="...">
+        @endif
         <div class="card-body text-center">
           <a href="/post/{{ $posts[0]->slug }}" class="text-dark text-decoration-none"><h3 class="card-title">{{ $posts[0]->title }}</h3></a>
           <small>By : <a href="/blog?author={{ $posts[0]->author->username }}" class="text-decoration-none">{{ $posts[0]->author->name }}</a> in <a href="/blog?category={{ $posts[0]->category->slug }}" class="text-decoration-none">{{ $posts[0]->category->name }}</a></small>
@@ -43,7 +49,13 @@
                             <a href="/categories/{{ $post->category->slug }}" class="text-white text-decoration-none">{{ $post->category->slug }}</a>
                         </div>
                         <article>
-                            <img src="https://source.unsplash.com/500x400/?{{ $post->category->name }}" class="card-img-top" alt="...">
+                            @if ($post->image)
+                                <div class="div" style="max-height: 400px; overflow: hidden;">
+                                    <img src="{{ asset('storage/' . $post->image) }}" class="card-img-top mt-4" alt="...">
+                                </div>
+                            @else
+                                <img src="https://source.unsplash.com/1200x400/?{{ $post->category->name }}" class="card-img-top mt-4" alt="...">
+                            @endif
                             <div class="card-body">
                                 <h5 class="card-title"><a href="/post/{{ $post->slug}}" class="text-decoration-none">{{ $post->title }}</a></h5>
                                 <p>By : <a href="/blog?author={{ $post->author->username }}" class="text-decoration-none">{{ $post->author->name }}</a> in <a href="/blog?category={{ $post->category->slug }}" class="text-decoration-none">{{ $post->category->name }}</a></p>
